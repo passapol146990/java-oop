@@ -8,6 +8,10 @@ class Student {
         classMate = ClassMate;
     }
     void print(){
-        System.out.printf("name: %s\nid: %s\nclassMate: %s\n",name,id,classMate);
+        if(classMate==null){
+            System.out.printf("name: %s\nid: %s\nclassMate: \n",name,id);
+        }else{
+            System.out.printf("name: %s\nid: %s\nclassMate: %s\n",name,id,classMate.name);
+        }
     }
 }
