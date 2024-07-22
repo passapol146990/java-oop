@@ -4,11 +4,8 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
 
 
 class Interactive_Color {
@@ -16,7 +13,6 @@ class Interactive_Color {
         JFrame frame = new JFrame("Interactive Color");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
-        // frame.setLayout(null);
         frame.setBounds(150,100,400,500);
 
         JPanel boxInput = new JPanel(new FlowLayout());
@@ -24,19 +20,23 @@ class Interactive_Color {
         boxInput.add(textfiled);
 
         JPanel boxShowColor = new JPanel(new FlowLayout());
-        boxShowColor.setPreferredSize(new Dimension(400,300));
+        boxShowColor.setPreferredSize(new Dimension(400,400));
         boxShowColor.setBackground(new Color(0,0,0));
         boxShowColor.setBounds(0,100,400,200);
-        // boxShowColor.setz
         // boxShowColor.addMouseListener(new MouseAdapter() {
         //     public void mouseClicked(MouseEvent e) {
         //         System.out.println("Mouse clicked at: (" + e.getX() + ", " + e.getY() + ")");
         //     }
         // });
+
         boxShowColor.addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent e) {
-                String title = String.format("x = %s, y = %s",e.getX(),e.getY());
+                int r = (int)(e.getX()/2);
+                int g = (int)(e.getY()/2);
+                int b = (int)(e.getX()+e.getY())/4;
+                String title = String.format("x=%s y=%s Color=(r=%s,g=%s,b=%s)",e.getX(),e.getY(),r,g,b);
                 textfiled.setText(title);
+                boxShowColor.setBackground(new Color(r,g,b));
             }
         });
 
